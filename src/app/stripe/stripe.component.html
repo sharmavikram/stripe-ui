@@ -1,0 +1,28 @@
+<form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm" id="payment-form">
+  <label>
+      <input [(ngModel)]="userModel.name" name="name" class="field is-empty" placeholder="Jane Doe" />
+    <span><span>Name</span></span>
+  </label>
+  <label>
+      <input [(ngModel)]="userModel.email" name="email" class="field is-empty" placeholder="example@com" />
+    <span><span>Email</span></span>
+  </label>
+  <label>
+    <input [(ngModel)]="userModel.phone" name="phone" class="field is-empty" type="tel" placeholder="(123) 456-7890" />
+    <span><span>Phone</span></span>
+  </label>
+  <label>
+    <div id="card-element" class="field is-empty"></div>
+    <span><span>Card</span></span>
+  </label>
+
+  <button type="submit">
+      <span>{{(spin) ? 'Please wait...' : 'Pay $25'}}</span>
+    </button>
+  <div class="outcome">
+    <div class="text-danger" id="card-errors" role="alert" *ngIf="token ==null && errMsg!=null">{{errMsg}}</div>
+    <div class="card-success" *ngIf="token!=null && errMsg==null">
+      Success! Your Stripe token is <span class="token">{{token}}</span>
+    </div>
+  </div>
+  </form>
